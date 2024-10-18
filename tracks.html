@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.552">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Alchemists - F1 Circuit Layout</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+<script type="text/javascript">
+
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+
+if (typeof require !== 'undefined') {
+
+require.undef("plotly");
+
+requirejs.config({
+
+    paths: {
+
+        'plotly': ['https://cdn.plot.ly/plotly-2.30.0.min']
+
+    }
+
+});
+
+require(['plotly'], function(Plotly) {
+
+    window._Plotly = Plotly;
+
+});
+
+}
+
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Alchemists</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">F1 Circuit Layout</li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DATA ALCHEMISTS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Data Wrangling: retrieval</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_document_sources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1: Data Sources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_automated_retrieval.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2: Retrieval of raw data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_raw_to_tabular.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3: From raw to tabular data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Data Wrangling: enrichment/cleaning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_enrichment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4: Data enrichment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5: Data cleaning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_test_quality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6: Test data quality</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Backups</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_format_conversion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7: Backup in several formats</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_backup_external_service.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8: External services</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Data Wrangling: Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09_summary_stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9: Summary statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_statistical_ML.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10: Statistical analisys</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_visualizations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11: Visualizations</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Data Wrangling: Communicating results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_webpage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12: Webpage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13_interactive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13: Interactivity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14_poster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14: Poster</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Project and software dev</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15_commit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15: Git commit history</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16_tests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">16: Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17_continuous_testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">17: Continuous Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18_continuous_integration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">18: Continuous Integration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19_python_package.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">19: Python Package (Optional)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20_reproducibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">20: Reproducibility</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">F1 Circuit Layout</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="7c6edc06" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-stderr">
+<pre><code>core           INFO     Loading data for Australian Grand Prix - Qualifying [v3.3.3]
+req            INFO     Using cached data for session_info
+req            INFO     Using cached data for driver_info
+req            INFO     Using cached data for session_status_data
+req            INFO     Using cached data for track_status_data
+req            INFO     Using cached data for _extended_timing_data
+req            INFO     Using cached data for timing_app_data
+core           INFO     Processing timing data...
+req            INFO     Using cached data for car_data
+req            INFO     Using cached data for position_data
+req            INFO     Using cached data for weather_data
+req            INFO     Using cached data for race_control_messages
+core           INFO     Finished loading data for 20 drivers: ['44', '77', '5', '33', '16', '8', '20', '4', '7', '11', '27', '3', '23', '99', '26', '18', '10', '55', '63', '88']</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[12  8 10 14]</code></pre>
+</div>
+</div>
+<div id="d9a764bf" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>                            <div id="45bfe158-a6a3-4bcc-9bd6-8bd5356367ae" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("45bfe158-a6a3-4bcc-9bd6-8bd5356367ae")) {                    Plotly.newPlot(                        "45bfe158-a6a3-4bcc-9bd6-8bd5356367ae",                        [{"hoverinfo":"text","marker":{"color":"royalblue","opacity":0.8,"size":5},"mode":"lines","text":["Speed: 308 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11080","Speed: 309 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11104","Speed: 310 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11151","Speed: 311 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11220","Speed: 312 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11208","Speed: 313 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11197","Speed: 313 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11219","Speed: 314 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11241","Speed: 314 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11241","Speed: 315 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11241","Speed: 315 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11268","Speed: 316 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11296","Speed: 317 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11350","Speed: 317 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11347","Speed: 317 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11345","Speed: 318 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11355","Speed: 319 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11366","Speed: 319 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11406","Speed: 319 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11447","Speed: 319 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11436","Speed: 320 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11425","Speed: 319 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 42%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11267","Speed: 280 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10158","Speed: 263 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9708","Speed: 247 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9258","Speed: 234 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9207","Speed: 221 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9156","Speed: 209 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9478","Speed: 197 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9800","Speed: 193 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 2%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9894","Speed: 190 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 4%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9989","Speed: 186 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 25%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9692","Speed: 178 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 74%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9754","Speed: 180 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 81%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10076","Speed: 182 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 88%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10398","Speed: 184 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 91%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10498","Speed: 187 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 94%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10598","Speed: 192 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 97%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10784","Speed: 197 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10971","Speed: 204 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11051","Speed: 213 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11684","Speed: 213 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11833","Speed: 213 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11983","Speed: 221 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11384","Speed: 229 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10785","Speed: 230 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10853","Speed: 232 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10921","Speed: 235 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11075","Speed: 238 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11230","Speed: 239 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11296","Speed: 241 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11363","Speed: 243 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11474","Speed: 246 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11586","Speed: 249 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11719","Speed: 250 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11810","Speed: 252 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11901","Speed: 254 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11334","Speed: 257 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10768","Speed: 259 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10745","Speed: 262 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10722","Speed: 265 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10810","Speed: 268 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10898","Speed: 271 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11019","Speed: 272 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11123","Speed: 274 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11227","Speed: 276 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11276","Speed: 279 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11326","Speed: 280 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11398","Speed: 282 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11471","Speed: 284 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11536","Speed: 286 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11601","Speed: 289 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11723","Speed: 290 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11777","Speed: 291 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11832","Speed: 292 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11621","Speed: 294 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11410","Speed: 294 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11025","Speed: 295 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10640","Speed: 296 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10664","Speed: 298 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10689","Speed: 300 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10770","Speed: 300 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10810","Speed: 301 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10851","Speed: 302 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10904","Speed: 304 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10958","Speed: 304 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10943","Speed: 305 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10929","Speed: 306 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10974","Speed: 307 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11020","Speed: 307 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11043","Speed: 308 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11066","Speed: 310 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11137","Speed: 311 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11137","Speed: 312 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11138","Speed: 294 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 50%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10674","Speed: 276 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10211","Speed: 259 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9402","Speed: 242 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8594","Speed: 228 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8276","Speed: 214 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7959","Speed: 177 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7983","Speed: 166 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8281","Speed: 156 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8579","Speed: 147 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8803","Speed: 138 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9027","Speed: 133 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8989","Speed: 128 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8951","Speed: 123 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8555","Speed: 118 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8159","Speed: 114 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 3%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7720","Speed: 111 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 9%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7713","Speed: 109 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 15%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7706","Speed: 105 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 26%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7723","Speed: 102 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 37%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7740","Speed: 102 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 40%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7941","Speed: 102 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 43%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8142","Speed: 104 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 48%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8141","Speed: 106 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 53%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8140","Speed: 110 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 65%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8466","Speed: 113 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 68%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8763","Speed: 116 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 71%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9060","Speed: 120 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 75%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9358","Speed: 128 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 80%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9455","Speed: 133 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 85%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10093","Speed: 138 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 91%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10731","Speed: 145 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 95%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11107","Speed: 153 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11483","Speed: 158 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11841","Speed: 164 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 12199","Speed: 171 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11639","Speed: 178 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11079","Speed: 178 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 39%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11040","Speed: 176 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 41%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10901","Speed: 175 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 44%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10762","Speed: 174 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 42%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10754","Speed: 173 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 41%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10747","Speed: 171 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 50%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10698","Speed: 170 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 60%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10650","Speed: 170 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 64%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10666","Speed: 170 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 68%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10682","Speed: 172 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 76%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10987","Speed: 174 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 83%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11204","Speed: 176 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 91%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11421","Speed: 180 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 95%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11610","Speed: 185 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11799","Speed: 188 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 12010","Speed: 192 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 12221","Speed: 197 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11581","Speed: 203 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10941","Speed: 209 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11386","Speed: 211 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11597","Speed: 214 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11809","Speed: 219 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11619","Speed: 224 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11429","Speed: 228 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11218","Speed: 233 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11008","Speed: 235 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11085","Speed: 237 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11162","Speed: 240 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11321","Speed: 244 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11480","Speed: 247 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11678","Speed: 249 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11775","Speed: 251 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11872","Speed: 251 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11610","Speed: 252 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11348","Speed: 253 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10982","Speed: 255 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10616","Speed: 255 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10562","Speed: 255 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10508","Speed: 255 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10532","Speed: 256 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10556","Speed: 257 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10568","Speed: 259 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10581","Speed: 261 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10725","Speed: 262 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10758","Speed: 264 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10792","Speed: 266 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10802","Speed: 268 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10813","Speed: 269 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10888","Speed: 271 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10963","Speed: 272 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11020","Speed: 274 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11078","Speed: 275 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11187","Speed: 276 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11248","Speed: 277 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11310","Speed: 278 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11344","Speed: 280 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11379","Speed: 280 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11420","Speed: 281 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11462","Speed: 282 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11500","Speed: 283 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11539","Speed: 284 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11604","Speed: 285 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11602","Speed: 286 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11601","Speed: 286 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11606","Speed: 286 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11611","Speed: 286 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11601","Speed: 286 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11592","Speed: 286 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11608","Speed: 287 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11624","Speed: 283 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 7%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10912","Speed: 262 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 3%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10072","Speed: 242 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9232","Speed: 222 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9235","Speed: 203 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9239","Speed: 196 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9377","Speed: 189 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9515","Speed: 182 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 1%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10018","Speed: 176 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 3%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10522","Speed: 171 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 15%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10294","Speed: 168 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 43%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10312","Speed: 165 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 71%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10331","Speed: 166 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 72%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10466","Speed: 167 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 74%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10602","Speed: 168 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 78%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10793","Speed: 169 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 83%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10984","Speed: 175 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11339","Speed: 188 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11854","Speed: 192 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11643","Speed: 197 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11433","Speed: 199 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11330","Speed: 202 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11228","Speed: 205 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11310","Speed: 208 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11393","Speed: 216 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11808","Speed: 219 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11536","Speed: 222 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11265","Speed: 225 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11034","Speed: 229 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10803","Speed: 231 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10956","Speed: 234 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11110","Speed: 238 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11224","Speed: 242 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11338","Speed: 246 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11521","Speed: 251 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11790","Speed: 252 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11841","Speed: 253 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11892","Speed: 254 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11207","Speed: 255 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10523","Speed: 257 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10562","Speed: 259 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10601","Speed: 261 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10661","Speed: 264 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10778","Speed: 264 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10835","Speed: 265 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10892","Speed: 266 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10917","Speed: 268 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10942","Speed: 269 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10962","Speed: 270 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10983","Speed: 271 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11047","Speed: 272 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11112","Speed: 273 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11104","Speed: 273 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11146","Speed: 274 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11189","Speed: 275 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11220","Speed: 276 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11252","Speed: 277 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11293","Speed: 278 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11335","Speed: 278 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11338","Speed: 279 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11341","Speed: 279 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11376","Speed: 280 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11411","Speed: 282 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11456","Speed: 282 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11469","Speed: 283 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11482","Speed: 284 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11533","Speed: 285 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11585","Speed: 285 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11551","Speed: 285 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11518","Speed: 284 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11520","Speed: 284 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11522","Speed: 283 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 57%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11131","Speed: 283 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 15%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10741","Speed: 232 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9529","Speed: 215 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9248","Speed: 199 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8967","Speed: 181 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8997","Speed: 164 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9027","Speed: 158 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9161","Speed: 152 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9295","Speed: 148 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9606","Speed: 144 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 1%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9918","Speed: 138 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 7%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9640","Speed: 135 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 20%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9561","Speed: 132 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 34%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9482","Speed: 131 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 49%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9850","Speed: 131 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 64%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10219","Speed: 132 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 72%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10426","Speed: 133 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 80%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10633","Speed: 138 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 85%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10974","Speed: 144 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 90%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11315","Speed: 154 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11836","Speed: 169 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 12081","Speed: 173 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11751","Speed: 178 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11421","Speed: 182 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11706","Speed: 186 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11991","Speed: 191 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11846","Speed: 196 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11702","Speed: 203 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11102","Speed: 211 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11517","Speed: 213 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11708","Speed: 216 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11899","Speed: 217 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11483","Speed: 219 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11068","Speed: 224 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10923","Speed: 229 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10779","Speed: 231 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10977","Speed: 241 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11302","Speed: 243 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11380","Speed: 245 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11459","Speed: 247 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11602","Speed: 249 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11746","Speed: 251 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11837","Speed: 253 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11928","Speed: 255 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11377","Speed: 257 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10827","Speed: 260 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10533","Speed: 261 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10611","Speed: 263 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10689","Speed: 264 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10750","Speed: 265 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10812","Speed: 266 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10879","Speed: 267 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10946","Speed: 268 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10972","Speed: 270 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10999","Speed: 272 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11061","Speed: 273 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11102","Speed: 275 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11144","Speed: 275 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11185","Speed: 275 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11226","Speed: 276 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11268","Speed: 277 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11310","Speed: 277 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11327","Speed: 278 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11345","Speed: 279 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11391","Speed: 281 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11417","Speed: 282 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11417","Speed: 283 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11417","Speed: 283 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11474","Speed: 283 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11531","Speed: 284 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11563","Speed: 285 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11595","Speed: 285 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11632","Speed: 286 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11650","Speed: 287 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11669","Speed: 288 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11689","Speed: 288 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11698","Speed: 288 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11707","Speed: 288 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11720","Speed: 289 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11734","Speed: 289 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11773","Speed: 291 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11786","Speed: 291 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11794","Speed: 291 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11803","Speed: 291 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11809","Speed: 291 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11815","Speed: 291 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11823","Speed: 291 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11831","Speed: 291 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 62%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11773","Speed: 290 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 54%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11690","Speed: 289 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 46%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11607","Speed: 283 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 45%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11316","Speed: 278 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 44%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11025","Speed: 274 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 53%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10901","Speed: 271 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 62%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10778","Speed: 266 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 74%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10720","Speed: 262 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 86%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10663","Speed: 260 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 98%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10721","Speed: 260 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 99%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10720","Speed: 261 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10720","Speed: 263 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10763","Speed: 266 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10806","Speed: 266 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10852","Speed: 267 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10899","Speed: 265 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10922","Speed: 264 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10945","Speed: 265 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10945","Speed: 264 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10919","Speed: 264 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10894","Speed: 263 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10863","Speed: 263 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10833","Speed: 263 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10849","Speed: 264 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10866","Speed: 265 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10895","Speed: 266 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10924","Speed: 269 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10988","Speed: 270 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11019","Speed: 272 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11050","Speed: 272 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11109","Speed: 273 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11169","Speed: 275 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11243","Speed: 277 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11317","Speed: 278 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11371","Speed: 280 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11426","Speed: 282 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11503","Speed: 284 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11581","Speed: 286 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11609","Speed: 287 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11703","Speed: 288 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11797","Speed: 289 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11574","Speed: 291 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11352","Speed: 291 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10933","Speed: 292 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10514","Speed: 293 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10548","Speed: 295 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10582","Speed: 296 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10618","Speed: 297 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10655","Speed: 298 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10700","Speed: 298 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10754","Speed: 299 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10809","Speed: 300 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10837","Speed: 301 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10865","Speed: 301 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10872","Speed: 302 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10879","Speed: 303 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10924","Speed: 304 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10969","Speed: 305 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10967","Speed: 305 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10949","Speed: 306 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10932","Speed: 306 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10958","Speed: 306 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10985","Speed: 306 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10985","Speed: 306 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10986","Speed: 307 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10985","Speed: 308 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10984","Speed: 308 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11059","Speed: 308 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11048","Speed: 309 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11038","Speed: 309 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11064","Speed: 309 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11091","Speed: 306 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 70%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11051","Speed: 303 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 41%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11012","Speed: 283 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 20%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10382","Speed: 264 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9752","Speed: 240 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9244","Speed: 216 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8737","Speed: 195 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9182","Speed: 186 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9584","Speed: 177 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9986","Speed: 172 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 4%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10010","Speed: 168 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 9%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10034","Speed: 165 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 14%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9917","Speed: 162 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 19%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9800","Speed: 157 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 34%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9695","Speed: 153 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 50%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9590","Speed: 153 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 75%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9856","Speed: 158 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 85%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10173","Speed: 161 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 89%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10436","Speed: 165 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 94%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10699","Speed: 168 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 97%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10971","Speed: 172 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11244","Speed: 179 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11503","Speed: 186 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11762","Speed: 190 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11938","Speed: 194 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 12115","Speed: 197 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11819","Speed: 201 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11523","Speed: 208 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11327","Speed: 211 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11491","Speed: 214 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11656","Speed: 216 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11843","Speed: 219 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 12030","Speed: 223 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11470","Speed: 227 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10910","Speed: 230 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10938","Speed: 234 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10967","Speed: 239 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11209","Speed: 241 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11350","Speed: 243 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11491","Speed: 245 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 88%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11503","Speed: 248 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 77%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11515","Speed: 246 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 65%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11504","Speed: 245 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 53%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11494","Speed: 240 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 48%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11232","Speed: 235 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 44%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10970","Speed: 232 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 58%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10827","Speed: 228 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 59%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10750","Speed: 225 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 61%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10673","Speed: 225 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 69%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10672","Speed: 225 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 77%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10671","Speed: 225 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 86%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10720","Speed: 225 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 95%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10769","Speed: 226 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 97%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10854","Speed: 228 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10940","Speed: 233 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11131","Speed: 234 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11199","Speed: 235 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11267","Speed: 239 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11393","Speed: 243 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11519","Speed: 244 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11576","Speed: 246 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11633","Speed: 249 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11691","Speed: 252 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11749","Speed: 254 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11749","Speed: 254 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11900","Speed: 254 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 12051","Speed: 244 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 51%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11742","Speed: 235 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 3%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11434","Speed: 213 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 1%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10594","Speed: 192 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9754","Speed: 174 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9403","Speed: 156 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9053","Speed: 152 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9086","Speed: 148 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9119","Speed: 122 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8365","Speed: 118 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8058","Speed: 114 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7752","Speed: 110 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7551","Speed: 107 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7350","Speed: 104 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: True\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7173","Speed: 101 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 6997","Speed: 99 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 0%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 6810","Speed: 97 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 11%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 6834","Speed: 96 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 23%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 6859","Speed: 92 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 36%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 6804","Speed: 89 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 50%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 6750","Speed: 92 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 54%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7118","Speed: 95 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 58%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7486","Speed: 98 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 61%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7629","Speed: 101 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 64%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 7773","Speed: 104 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 70%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8183","Speed: 108 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 76%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 8594","Speed: 120 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 84%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9545","Speed: 124 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 86%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9713","Speed: 129 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 89%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 9882","Speed: 138 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 94%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10518","Speed: 147 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11154","Speed: 153 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11555","Speed: 160 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11957","Speed: 164 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 92%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11520","Speed: 169 km\u002fh\u003cbr\u003eGear: 3\u003cbr\u003eThrottle: 85%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11084","Speed: 177 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 82%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11373","Speed: 178 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 80%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11384","Speed: 180 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 78%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11396","Speed: 182 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 77%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11425","Speed: 184 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 76%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11454","Speed: 186 km\u002fh\u003cbr\u003eGear: 4\u003cbr\u003eThrottle: 79%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11050","Speed: 188 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 83%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10646","Speed: 188 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 86%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10639","Speed: 189 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 89%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10632","Speed: 198 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 98%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10990","Speed: 200 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 99%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11146","Speed: 202 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11303","Speed: 206 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11507","Speed: 211 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11711","Speed: 213 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11825","Speed: 215 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11940","Speed: 217 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11526","Speed: 219 km\u002fh\u003cbr\u003eGear: 5\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11113","Speed: 226 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10898","Speed: 229 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10940","Speed: 232 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10983","Speed: 234 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11151","Speed: 237 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11320","Speed: 241 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11466","Speed: 245 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11613","Speed: 247 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11583","Speed: 249 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11553","Speed: 254 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11803","Speed: 256 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11542","Speed: 258 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11281","Speed: 261 km\u002fh\u003cbr\u003eGear: 6\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11041","Speed: 264 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10801","Speed: 266 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10859","Speed: 268 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10918","Speed: 271 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11033","Speed: 274 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11149","Speed: 278 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11369","Speed: 279 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11404","Speed: 280 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11440","Speed: 282 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11519","Speed: 284 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11598","Speed: 285 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11654","Speed: 287 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11711","Speed: 289 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11783","Speed: 291 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11855","Speed: 293 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10595","Speed: 294 km\u002fh\u003cbr\u003eGear: 7\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10606","Speed: 295 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10618","Speed: 297 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10695","Speed: 299 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10773","Speed: 299 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10783","Speed: 300 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10794","Speed: 301 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10871","Speed: 302 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10949","Speed: 303 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10926","Speed: 303 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10918","Speed: 304 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10911","Speed: 305 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10943","Speed: 306 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10976","Speed: 306 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10985","Speed: 307 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 10994","Speed: 307 km\u002fh\u003cbr\u003eGear: 8\u003cbr\u003eThrottle: 100%\u003cbr\u003eBrake: False\u003cbr\u003eDRS: Active\u003cbr\u003eRPM: 11008"],"x":[-816,-974,-993,-1288,-1289,-1478,-1519,-1626,-1692,-1752,-1843,-1874,-2016,-2017,-2168,-2204,-2300,-2370,-2453,-2593,-2640,-2817,-2939,-2968,-3052,-3062,-3150,-3192,-3299,-3393,-3423,-3509,-3577,-3595,-3647,-3680,-3706,-3729,-3728,-3695,-3646,-3636,-3609,-3593,-3555,-3547,-3527,-3517,-3507,-3502,-3500,-3505,-3506,-3525,-3528,-3559,-3576,-3620,-3681,-3741,-3897,-3930,-4145,-4164,-4341,-4412,-4564,-4685,-4746,-4836,-4854,-4973,-4984,-5096,-5137,-5215,-5295,-5364,-5521,-5550,-5715,-5727,-5840,-5878,-5950,-6014,-6059,-6152,-6188,-6286,-6294,-6395,-6412,-6491,-6534,-6600,-6685,-6730,-6846,-6853,-6916,-6927,-6981,-7005,-7027,-7049,-7062,-7106,-7117,-7162,-7163,-7201,-7210,-7232,-7243,-7248,-7248,-7245,-7227,-7227,-7198,-7191,-7147,-7143,-7095,-7077,-7040,-7008,-6984,-6910,-6884,-6673,-6655,-6450,-6391,-6306,-6253,-6216,-6146,-6130,-6039,-6032,-5963,-5942,-5901,-5873,-5857,-5841,-5839,-5841,-5842,-5846,-5848,-5852,-5855,-5858,-5862,-5864,-5872,-5875,-5889,-5890,-5904,-5908,-5919,-5927,-5932,-5933,-5928,-5909,-5890,-5836,-5823,-5742,-5714,-5622,-5563,-5495,-5427,-5363,-5204,-5167,-4935,-4917,-4735,-4681,-4592,-4520,-4462,-4334,-4307,-4138,-4124,-3957,-3891,-3747,-3620,-3534,-3378,-3349,-3197,-3185,-3055,-3014,-2940,-2882,-2840,-2761,-2747,-2668,-2660,-2560,-2527,-2477,-2439,-2408,-2343,-2264,-2244,-2187,-2155,-2131,-2080,-2070,-1900,-1868,-1702,-1609,-1467,-1314,-1233,-1135,-1098,-945,-811,-776,-660,-588,-525,-433,-395,-226,-44,-29,170,243,375,474,531,622,638,724,731,802,825,863,892,917,944,956,990,993,1034,1042,1079,1080,1113,1122,1145,1162,1172,1202,1204,1234,1240,1264,1276,1290,1306,1313,1333,1334,1354,1357,1365,1375,1408,1413,1385,1322,1307,1264,1170,1149,1102,1074,1038,976,953,861,795,779,721,685,653,614,593,559,532,527,512,510,483,471,442,415,404,360,360,311,302,284,278,273,269,268,268,269,280,284,296,309,325,358,370,427,491,508,560,597,635,699,721,820,922,949,1030,1087,1146,1244,1280,1428,1535,1570,1708,1801,1877,1977,2009,2144,2146,2248,2299,2369,2445,2475,2575,2588,2805,2841,2981,3040,3111,3189,3229,3347,3357,3492,3516,3627,3684,3762,3852,3895,4011,4020,4144,4145,4255,4283,4360,4413,4486,4552,4598,4690,4709,4825,4836,4955,4998,5075,5144,5196,5305,5325,5405,5445,5566,5582,5779,5858,6010,6137,6216,6359,6384,6528,6540,6641,6676,6739,6789,6817,6866,6875,6939,6946,7039,7052,7096,7115,7142,7176,7192,7238,7248,7287,7288,7323,7332,7354,7373,7395,7432,7442,7470,7459,7451,7412,7383,7354,7308,7289,7244,7211,7143,7129,7055,7032,6960,6912,6864,6792,6767,6663,6645,6533,6524,6417,6377,6295,6220,6164,6035,6004,5816,5758,5576,5454,5337,5170,5084,4938,4916,4825,4818,4741,4715,4667,4629,4602,4549,4538,4473,4469,4421,4394,4309,4224,4167,4059,4037,3908,3901,3851,3844,3812,3783,3763,3726,3719,3682,3680,3643,3636,3589,3566,3537,3506,3489,3444,3440,3407,3402,3377,3364,3342,3313,3296,3248,3243,3196,3190,3162,3139,3085,3004,2961,2828,2815,2642,2617,2522,2482,2426,2362,2331,2235,2224,2070,2041,1921,1894,1787,1743,1687,1627,1611,1513,1505,1409,1375,1306,1245,1198,1101,1082,973,964,858,820,748,683,632,524,503,383,373,256,214,133,63,12,-95,-116,-249,-261,-374,-427,-558,-693,-791,-817],"y":[-1652,-1502,-1483,-1199,-1199,-1017,-978,-874,-811,-753,-666,-635,-499,-499,-353,-319,-226,-160,-80,54,99,269,386,414,495,504,588,629,733,823,852,934,1000,1017,1067,1102,1138,1198,1219,1310,1394,1414,1465,1504,1608,1636,1718,1773,1845,1912,1960,2062,2082,2208,2220,2335,2383,2490,2599,2682,2859,2890,3070,3086,3240,3303,3442,3554,3612,3700,3718,3837,3848,3963,4006,4088,4174,4251,4428,4462,4657,4672,4811,4858,4950,5032,5092,5216,5265,5403,5415,5559,5583,5700,5766,5868,6002,6075,6267,6280,6387,6405,6501,6544,6584,6623,6647,6728,6749,6833,6834,6905,6922,6965,6995,7026,7074,7088,7139,7140,7181,7187,7219,7222,7240,7245,7252,7259,7263,7279,7284,7326,7330,7371,7384,7401,7412,7418,7434,7437,7468,7472,7513,7533,7582,7631,7665,7735,7749,7837,7845,7932,7965,8044,8085,8141,8214,8255,8404,8458,8722,8724,8983,9053,9268,9393,9482,9583,9617,9700,9750,9841,9856,9935,9959,10029,10074,10124,10176,10223,10345,10372,10548,10562,10694,10732,10789,10832,10863,10929,10941,11016,11022,11086,11112,11167,11217,11250,11312,11323,11388,11394,11455,11477,11515,11548,11571,11619,11627,11677,11683,11749,11773,11809,11838,11857,11890,11893,11889,11864,11845,11826,11779,11770,11621,11596,11490,11447,11396,11355,11339,11331,11329,11325,11316,11313,11296,11284,11270,11245,11232,11171,11082,11074,10945,10890,10770,10668,10601,10480,10456,10313,10301,10154,10101,9997,9903,9801,9679,9619,9453,9437,9236,9199,9013,9012,8846,8807,8691,8611,8559,8415,8402,8254,8229,8108,8052,7980,7905,7870,7778,7769,7672,7660,7613,7572,7436,7346,7280,7224,7215,7209,7184,7178,7161,7149,7132,7099,7084,7020,6963,6946,6878,6830,6782,6710,6665,6570,6454,6424,6328,6315,6153,6078,5906,5743,5676,5408,5407,5115,5052,4905,4823,4743,4623,4583,4414,4414,4228,4184,4068,3986,3890,3730,3677,3470,3278,3233,3104,3021,2938,2815,2773,2608,2454,2417,2306,2234,2161,2052,2013,1869,1772,1743,1628,1551,1487,1403,1375,1262,1262,1175,1133,1074,1012,984,903,893,764,751,744,754,764,775,780,797,798,815,819,835,843,852,866,874,887,885,806,806,712,690,625,582,520,466,427,351,335,238,230,130,96,31,-25,-68,-159,-175,-242,-276,-376,-389,-552,-621,-761,-892,-985,-1188,-1230,-1508,-1533,-1789,-1887,-2087,-2250,-2342,-2499,-2529,-2734,-2756,-3059,-3100,-3240,-3301,-3391,-3502,-3556,-3702,-3736,-3864,-3865,-3980,-4008,-4081,-4142,-4218,-4354,-4399,-4560,-4622,-4637,-4697,-4735,-4759,-4784,-4792,-4812,-4825,-4855,-4860,-4892,-4902,-4931,-4951,-4970,-5001,-5011,-5055,-5062,-5108,-5113,-5157,-5175,-5208,-5240,-5262,-5317,-5329,-5407,-5433,-5513,-5560,-5592,-5610,-5600,-5554,-5545,-5489,-5484,-5417,-5389,-5326,-5266,-5221,-5128,-5109,-4997,-4989,-4907,-4859,-4712,-4565,-4465,-4279,-4242,-4031,-4020,-3941,-3930,-3881,-3839,-3809,-3756,-3746,-3695,-3691,-3642,-3636,-3608,-3601,-3598,-3604,-3609,-3633,-3635,-3669,-3676,-3705,-3722,-3748,-3784,-3803,-3860,-3864,-3920,-3929,-3961,-3990,-4053,-4151,-4204,-4355,-4366,-4475,-4487,-4515,-4520,-4523,-4522,-4519,-4498,-4494,-4418,-4397,-4287,-4261,-4157,-4115,-4062,-4004,-3988,-3894,-3886,-3795,-3762,-3696,-3637,-3591,-3498,-3480,-3376,-3367,-3264,-3228,-3159,-3096,-3047,-2944,-2924,-2808,-2798,-2686,-2646,-2568,-2500,-2450,-2348,-2327,-2199,-2189,-2079,-2029,-1902,-1772,-1676,-1650],"type":"scattergl"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"margin":{"l":20,"r":20,"t":50,"b":20},"title":{"text":"Track Layout"},"plot_bgcolor":"white","hovermode":"closest"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('45bfe158-a6a3-4bcc-9bd6-8bd5356367ae');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<div id="3e97370d" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import fastf1</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from fastf1.plotting import team_color</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import plotly.graph_objects as go</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># # Enable cache for faster loading and less data consumption</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fastf1.Cache.enable_cache('D:\\')  # adjust the path as necessary</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># # Load the session data</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># session = fastf1.get_session(2024, 'Shanghai', 'Q')</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># session.load()</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># # Initialize a figure</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># fig = go.Figure()</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># # Process each lap for each car in the session</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># for lap in session.laps.iterlaps():</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#     telemetry = lap[1].get_telemetry()  # Get telemetry data for the lap</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#     # Create a scatter plot for this lap</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">#     fig.add_trace(go.Scattergl(</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">#         x=telemetry['X'],</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#         y=telemetry['Y'],</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">#         mode='markers',</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">#         name=f"{lap[1]['Driver']} Lap {lap[1]['LapNumber']}",</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">#         marker=dict(</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">#             size=3,</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">#             color=team_color(lap[1]['Team']),  # Color by team for differentiation</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">#             opacity=0.6</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">#         )</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">#     ))</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co"># # Update the layout of the figure</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># fig.update_layout(</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co">#     title="F1 Lap by Lap Telemetry on Track Layout",</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co">#     xaxis=dict(title="X Coordinate", showgrid=False, zeroline=False),</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co">#     yaxis=dict(title="Y Coordinate", showgrid=False, zeroline=False),</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co">#     hovermode='closest',</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co">#     showlegend=True,</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co">#     legend_title="Driver and Lap",</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co">#     margin=dict(l=20, r=20, t=50, b=20)  # Adjusting margins for better frame fitting</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co"># # Display the figure</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="co"># fig.show()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
